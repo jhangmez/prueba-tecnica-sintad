@@ -1,0 +1,21 @@
+<mat-toolbar color="primary">
+  <span>{{ title }} - Jhan Gomez</span>
+  <span class="spacer"></span>
+  <ng-container *ngIf="authService.isAuthenticated(); else loginTemplate">
+    <button mat-button routerLink="/entidades">Entidades</button>
+    <button mat-button routerLink="/tipos-contribuyente">
+      Tipos de Contribuyente
+    </button>
+    <button mat-button routerLink="/tipos-documento">Tipos de Documento</button>
+    |
+    <button mat-button (click)="logout()">
+      <mat-icon>logout</mat-icon> Cerrar Sesión
+    </button>
+  </ng-container>
+  <ng-template #loginTemplate>
+    <button mat-button routerLink="/login">Iniciar Sesión</button>
+    <button mat-button routerLink="/register">Registrarse</button>
+  </ng-template>
+</mat-toolbar>
+
+<router-outlet></router-outlet>

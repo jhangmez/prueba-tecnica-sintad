@@ -1,0 +1,54 @@
+<mat-card>
+  <mat-card-title
+    >{{ isEditing ? "Editar" : "Nuevo" }} Tipo de Documento</mat-card-title
+  >
+  <mat-card-content>
+    <form #tipoDocumentoForm="ngForm" (ngSubmit)="onSubmit()">
+      <mat-form-field appearance="outline">
+        <mat-label>Descripción</mat-label>
+        <input
+          matInput
+          type="text"
+          [(ngModel)]="tipoDocumento.descripcion"
+          name="descripcion"
+          required
+        />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Abreviatura</mat-label>
+        <input
+          matInput
+          type="text"
+          [(ngModel)]="tipoDocumento.abreviatura"
+          name="abreviatura"
+          required
+        />
+      </mat-form-field>
+
+      <mat-slide-toggle
+        [(ngModel)]="tipoDocumento.estado"
+        name="estado"
+        color="primary"
+      >
+        {{ tipoDocumento.estado ? "Activo" : "Inactivo" }}
+      </mat-slide-toggle>
+      <br />
+      <button
+        mat-raised-button
+        color="primary"
+        type="submit"
+        [disabled]="!tipoDocumentoForm.valid"
+      >
+        {{ isEditing ? "Actualizar" : "Guardar" }}
+      </button>
+      <button
+        mat-raised-button
+        type="button"
+        [routerLink]="['/tipos-documento']"
+      >
+        Cancelar
+      </button>
+    </form>
+  </mat-card-content>
+</mat-card>

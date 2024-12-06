@@ -1,0 +1,15 @@
+.register-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.register-card {
+  width: 300px;
+}
+
+.register-card mat-form-field {
+  width: 100%;
+  margin-bottom: 20px;
+}

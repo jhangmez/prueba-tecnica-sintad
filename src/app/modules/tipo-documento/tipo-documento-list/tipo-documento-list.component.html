@@ -1,0 +1,56 @@
+<mat-toolbar color="primary">
+  <span>Lista de Tipos de Documento</span>
+  <span class="spacer"></span>
+  <button mat-raised-button color="accent" routerLink="/tipos-documento/nuevo">
+    <mat-icon>add</mat-icon> Nuevo Tipo de Documento
+  </button>
+</mat-toolbar>
+
+<div class="table-container">
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    <ng-container matColumnDef="idTipoDocumento">
+      <th mat-header-cell *matHeaderCellDef>ID</th>
+      <td mat-cell *matCellDef="let element">{{ element.idTipoDocumento }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="descripcion">
+      <th mat-header-cell *matHeaderCellDef>Descripción</th>
+      <td mat-cell *matCellDef="let element">{{ element.descripcion }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="abreviatura">
+      <th mat-header-cell *matHeaderCellDef>Abreviatura</th>
+      <td mat-cell *matCellDef="let element">{{ element.abreviatura }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="estado">
+      <th mat-header-cell *matHeaderCellDef>Estado</th>
+      <td mat-cell *matCellDef="let element">
+        {{ element.estado ? "Activo" : "Inactivo" }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="acciones">
+      <th mat-header-cell *matHeaderCellDef>Acciones</th>
+      <td mat-cell *matCellDef="let element">
+        <button
+          mat-icon-button
+          color="primary"
+          [routerLink]="['/tipos-documento/editar', element.idTipoDocumento]"
+        >
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button
+          mat-icon-button
+          color="warn"
+          (click)="deleteTipoDocumento(element.idTipoDocumento)"
+        >
+          <mat-icon>delete</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+</div>

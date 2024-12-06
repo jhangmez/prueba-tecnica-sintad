@@ -1,0 +1,43 @@
+<mat-card>
+  <mat-card-title
+    >{{ isEditing ? "Editar" : "Nuevo" }} Tipo de Contribuyente</mat-card-title
+  >
+  <mat-card-content>
+    <form #tipoContribuyenteForm="ngForm" (ngSubmit)="onSubmit()">
+      <mat-form-field appearance="outline">
+        <mat-label>Descripción</mat-label>
+        <input
+          matInput
+          type="text"
+          [(ngModel)]="tipoContribuyente.descripcion"
+          name="descripcion"
+          required
+        />
+      </mat-form-field>
+
+      <mat-slide-toggle
+        [(ngModel)]="tipoContribuyente.estado"
+        name="estado"
+        color="primary"
+      >
+        {{ tipoContribuyente.estado ? "Activo" : "Inactivo" }}
+      </mat-slide-toggle>
+      <br />
+      <button
+        mat-raised-button
+        color="primary"
+        type="submit"
+        [disabled]="!tipoContribuyenteForm.valid"
+      >
+        {{ isEditing ? "Actualizar" : "Guardar" }}
+      </button>
+      <button
+        mat-raised-button
+        type="button"
+        [routerLink]="['/tipos-contribuyente']"
+      >
+        Cancelar
+      </button>
+    </form>
+  </mat-card-content>
+</mat-card>

@@ -1,0 +1,101 @@
+<mat-card>
+  <mat-card-title>{{ isEditing ? "Editar" : "Nueva" }} Entidad</mat-card-title>
+  <mat-card-content>
+    <form #entidadForm="ngForm" (ngSubmit)="onSubmit()">
+      <mat-form-field appearance="outline">
+        <mat-label>Tipo de Documento</mat-label>
+        <mat-select
+          [(ngModel)]="entidad.idTipoDocumento"
+          name="idTipoDocumento"
+          required
+        >
+          <mat-option
+            *ngFor="let tipo of tiposDocumento"
+            [value]="tipo.idTipoDocumento"
+          >
+            {{ tipo.descripcion }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Nro. Documento</mat-label>
+        <input
+          matInput
+          type="text"
+          [(ngModel)]="entidad.nroDocumento"
+          name="nroDocumento"
+          required
+        />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Razón Social</mat-label>
+        <input
+          matInput
+          type="text"
+          [(ngModel)]="entidad.razonSocial"
+          name="razonSocial"
+          required
+        />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Nombre Comercial</mat-label>
+        <input
+          matInput
+          type="text"
+          [(ngModel)]="entidad.nombreComercial"
+          name="nombreComercial"
+        />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Tipo de Contribuyente</mat-label>
+        <mat-select
+          [(ngModel)]="entidad.idTipoContribuyente"
+          name="idTipoContribuyente"
+        >
+          <mat-option
+            *ngFor="let tipo of tiposContribuyente"
+            [value]="tipo.idTipoContribuyente"
+          >
+            {{ tipo.descripcion }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Dirección</mat-label>
+        <input
+          matInput
+          type="text"
+          [(ngModel)]="entidad.direccion"
+          name="direccion"
+        />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Teléfono</mat-label>
+        <input
+          matInput
+          type="text"
+          [(ngModel)]="entidad.telefono"
+          name="telefono"
+        />
+      </mat-form-field>
+
+      <button
+        mat-raised-button
+        color="primary"
+        type="submit"
+        [disabled]="!entidadForm.valid"
+      >
+        {{ isEditing ? "Actualizar" : "Guardar" }}
+      </button>
+      <button mat-raised-button type="button" [routerLink]="['/entidades']">
+        Cancelar
+      </button>
+    </form>
+  </mat-card-content>
+</mat-card>
