@@ -3,7 +3,7 @@ export interface EntidadCrear {
   nroDocumento: string;
   razonSocial: string;
   nombreComercial?: string;
-  tipoContribuyente?: { idTipoContribuyente: number } | null; // Opcional
+  tipoContribuyente?: { idTipoContribuyente: number } | null;
   direccion?: string;
   telefono?: string;
   estado?: boolean;

@@ -16,7 +16,7 @@ export const routes: Routes = [
   },
   {
     path: '',
-    canActivate: [AuthGuard], // Protege las rutas privadas
+    canActivate: [AuthGuard],
     children: [
       {
         path: 'entidades',
@@ -39,9 +39,9 @@ export const routes: Routes = [
             (m) => m.TIPO_DOCUMENTO_ROUTES
           ),
       },
-      // Redirige a entidades si se accede a una ruta protegida sin especificar
+
       { path: '', redirectTo: '/entidades', pathMatch: 'full' },
     ],
   },
-  { path: '**', redirectTo: '/entidades' }, // Redirige a entidades si la ruta no existe
+  { path: '**', redirectTo: '/entidades' },
 ];
