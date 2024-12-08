@@ -10,15 +10,17 @@
     <ng-container *ngIf="authService.isAuthenticated(); else loginTemplate">
       <button mat-button (click)="logout()" class="logout-button">
         <mat-icon>logout</mat-icon>
-        <span class="button-text">Cerrar Sesión</span>
+        <span class="button-text" style="font-weight: 500">Cerrar Sesión</span>
       </button>
     </ng-container>
     <ng-template #loginTemplate>
-      <button mat-button routerLink="/login" class="auth-button">
+      <button
+        mat-button
+        routerLink="/login"
+        class="auth-button"
+        style="font-weight: 500"
+      >
         Iniciar Sesión
-      </button>
-      <button mat-button routerLink="/register" class="auth-button">
-        Registrarse
       </button>
     </ng-template>
   </mat-toolbar>

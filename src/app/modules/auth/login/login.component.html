@@ -1,7 +1,9 @@
 <div class="auth-container">
   <mat-card class="auth-card">
     <mat-card-header>
-      <mat-card-title>Iniciar Sesión</mat-card-title>
+      <mat-card-title style="font-weight: 500; padding-bottom: 12px"
+        >Iniciar Sesión</mat-card-title
+      >
     </mat-card-header>
     <mat-card-content>
       <form #loginForm="ngForm" (ngSubmit)="login()">
@@ -48,8 +50,5 @@
         </button>
       </form>
     </mat-card-content>
-    <mat-card-actions>
-      <a mat-button routerLink="/register">¿No tienes una cuenta? Regístrate</a>
-    </mat-card-actions>
   </mat-card>
 </div>
