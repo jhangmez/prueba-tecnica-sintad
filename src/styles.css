@@ -8,3 +8,6 @@ body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
+.cdk-overlay-pane:has(.mat-mdc-select-panel) {
+  width: auto !important;
+}
