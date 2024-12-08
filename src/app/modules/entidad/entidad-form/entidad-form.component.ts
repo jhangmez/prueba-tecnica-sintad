@@ -16,7 +16,6 @@ import { MatCardModule } from '@angular/material/card';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ErrorHandlerComponent } from '../../../shared/components/error-handler/error-handler.component';
 import { RouterLink } from '@angular/router';
-import { EntidadCrear } from '../../../shared/models/entidad.create.model';
 
 @Component({
   selector: 'app-entidad-form',
@@ -36,15 +35,14 @@ import { EntidadCrear } from '../../../shared/models/entidad.create.model';
 })
 export class EntidadFormComponent implements OnInit {
   entidad: Entidad = {
-    idTipoDocumento: 0,
+    tipoDocumento: { idTipoDocumento: 0 } as TipoDocumento,
     nroDocumento: '',
     razonSocial: '',
+    tipoContribuyente: {} as TipoContribuyente,
   };
   tiposDocumento: TipoDocumento[] = [];
   tiposContribuyente: TipoContribuyente[] = [];
   isEditing: boolean = false;
-  selectedTipoDocumento: number | null = null;
-  selectedTipoContribuyente: number | null = null;
 
   constructor(
     private entidadService: EntidadService,
@@ -72,8 +70,6 @@ export class EntidadFormComponent implements OnInit {
       (entidad) => {
         if (entidad) {
           this.entidad = entidad;
-          this.selectedTipoDocumento = entidad.idTipoDocumento ?? null;
-          this.selectedTipoContribuyente = entidad.idTipoContribuyente ?? null;
         } else {
           this.snackBar.openFromComponent(ErrorHandlerComponent, {
             data: { message: `Entidad con id ${id} no encontrada` },
@@ -137,18 +133,7 @@ export class EntidadFormComponent implements OnInit {
           },
         });
     } else {
-      const entidadACrear: EntidadCrear = {
-        tipoDocumento: { idTipoDocumento: this.entidad.idTipoDocumento },
-        nroDocumento: this.entidad.nroDocumento,
-        razonSocial: this.entidad.razonSocial,
-        nombreComercial: this.entidad.nombreComercial,
-        tipoContribuyente: this.entidad.idTipoContribuyente
-          ? { idTipoContribuyente: this.entidad.idTipoContribuyente }
-          : null,
-        direccion: this.entidad.direccion,
-        telefono: this.entidad.telefono,
-      };
-      this.entidadService.createEntidad(entidadACrear).subscribe({
+      this.entidadService.createEntidad(this.entidad).subscribe({
         next: () => {
           this.snackBar.open('Entidad creada correctamente', 'Cerrar', {
             duration: 3000,

@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Entidad } from '../../shared/models/entidad.model';
-import { EntidadCrear } from '../../shared/models/entidad.create.model';
 
 @Injectable({
   providedIn: 'root',
@@ -18,7 +17,7 @@ export class EntidadService {
     return this.http.get<Entidad>(`${this.apiUrl}/${id}`);
   }
 
-  createEntidad(entidad: EntidadCrear): Observable<Entidad> {
+  createEntidad(entidad: Entidad): Observable<Entidad> {
     return this.http.post<Entidad>(this.apiUrl, entidad);
   }
 

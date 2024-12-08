@@ -1,10 +1,13 @@
+import { TipoContribuyente } from './tipo-contribuyente.model';
+import { TipoDocumento } from './tipo-documento.model';
+
 export interface Entidad {
   idEntidad?: number;
-  idTipoDocumento: number;
+  tipoDocumento: TipoDocumento;
   nroDocumento: string;
   razonSocial: string;
   nombreComercial?: string;
-  idTipoContribuyente?: number;
+  tipoContribuyente?: TipoContribuyente;
   direccion?: string;
   telefono?: string;
   estado?: boolean;

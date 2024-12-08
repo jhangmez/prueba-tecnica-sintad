@@ -14,7 +14,7 @@
         <mat-form-field appearance="outline" class="col-span-1">
           <mat-label>Tipo de Documento</mat-label>
           <mat-select
-            [(ngModel)]="selectedTipoDocumento"
+            [(ngModel)]="entidad.tipoDocumento.idTipoDocumento"
             name="idTipoDocumento"
             required
           >
@@ -59,10 +59,14 @@
           />
         </mat-form-field>
 
-        <mat-form-field appearance="outline" class="col-span-2">
+        <mat-form-field
+          *ngIf="entidad.tipoContribuyente"
+          appearance="outline"
+          class="col-span-2"
+        >
           <mat-label>Tipo de Contribuyente</mat-label>
           <mat-select
-            [(ngModel)]="selectedTipoContribuyente"
+            [(ngModel)]="entidad.tipoContribuyente.idTipoContribuyente"
             name="idTipoContribuyente"
           >
             <mat-option
