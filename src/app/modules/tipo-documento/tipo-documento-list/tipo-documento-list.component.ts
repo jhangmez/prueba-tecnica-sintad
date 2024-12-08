@@ -30,6 +30,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 export class TipoDocumentoListComponent implements OnInit {
   displayedColumns: string[] = [
     'idTipoDocumento',
+    'codigo',
     'descripcion',
     'abreviatura',
     'estado',

@@ -1,6 +1,7 @@
 export interface TipoDocumento {
-  idTipoDocumento: number;
+  idTipoDocumento: number | null;
+  codigo: string;
   descripcion: string;
-  abreviatura: string;
+  nombre: string;
   estado: boolean;
 }

@@ -31,7 +31,7 @@ import { RouterLink } from '@angular/router';
 })
 export class TipoContribuyenteFormComponent implements OnInit {
   tipoContribuyente: TipoContribuyente = {
-    idTipoContribuyente: 0,
+    idTipoContribuyente: 0 || null,
     nombre: '',
     estado: true,
   };
@@ -85,37 +85,42 @@ export class TipoContribuyenteFormComponent implements OnInit {
 
   onSubmit(): void {
     if (this.isEditing) {
-      this.tipoContribuyenteService
-        .updateTipoContribuyente(
-          this.tipoContribuyente.idTipoContribuyente,
-          this.tipoContribuyente
-        )
-        .subscribe({
-          next: () => {
-            this.snackBar.open(
-              'Tipo de Contribuyente actualizado correctamente',
-              'Cerrar',
-              { duration: 3000 }
-            );
-            this.router.navigate(['/tipos-contribuyente']);
-          },
-          error: (error) => {
-            console.error('Error actualizando el tipo de contribuyente', error);
-            let errorMessage =
-              'Ocurrió un error al actualizar el tipo de contribuyente.';
-            if (error.status === 400) {
-              errorMessage = error.error.message;
-            } else if (error.error && error.error.message) {
-              errorMessage = error.error.message;
-            } else if (error.status === 404) {
-              errorMessage = `Tipo de contribuyente con id ${this.tipoContribuyente.idTipoContribuyente} no encontrado`;
-            }
-            this.snackBar.openFromComponent(ErrorHandlerComponent, {
-              data: { message: errorMessage },
-              duration: 5000,
-            });
-          },
-        });
+      if (this.tipoContribuyente.idTipoContribuyente !== null) {
+        this.tipoContribuyenteService
+          .updateTipoContribuyente(
+            this.tipoContribuyente.idTipoContribuyente,
+            this.tipoContribuyente
+          )
+          .subscribe({
+            next: () => {
+              this.snackBar.open(
+                'Tipo de Contribuyente actualizado correctamente',
+                'Cerrar',
+                { duration: 3000 }
+              );
+              this.router.navigate(['/tipos-contribuyente']);
+            },
+            error: (error) => {
+              console.error(
+                'Error actualizando el tipo de contribuyente',
+                error
+              );
+              let errorMessage =
+                'Ocurrió un error al actualizar el tipo de contribuyente.';
+              if (error.status === 400) {
+                errorMessage = error.error.message;
+              } else if (error.error && error.error.message) {
+                errorMessage = error.error.message;
+              } else if (error.status === 404) {
+                errorMessage = `Tipo de contribuyente con id ${this.tipoContribuyente.idTipoContribuyente} no encontrado`;
+              }
+              this.snackBar.openFromComponent(ErrorHandlerComponent, {
+                data: { message: errorMessage },
+                duration: 5000,
+              });
+            },
+          });
+      }
     } else {
       this.tipoContribuyenteService
         .createTipoContribuyente(this.tipoContribuyente)

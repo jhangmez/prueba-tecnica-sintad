@@ -31,9 +31,10 @@ import { RouterLink } from '@angular/router';
 })
 export class TipoDocumentoFormComponent implements OnInit {
   tipoDocumento: TipoDocumento = {
-    idTipoDocumento: 0,
+    idTipoDocumento: 0 || null,
+    codigo: '',
     descripcion: '',
-    abreviatura: '',
+    nombre: '',
     estado: true,
   };
   isEditing: boolean = false;
@@ -85,37 +86,39 @@ export class TipoDocumentoFormComponent implements OnInit {
 
   onSubmit(): void {
     if (this.isEditing) {
-      this.tipoDocumentoService
-        .updateTipoDocumento(
-          this.tipoDocumento.idTipoDocumento,
-          this.tipoDocumento
-        )
-        .subscribe({
-          next: () => {
-            this.snackBar.open(
-              'Tipo de documento actualizado correctamente',
-              'Cerrar',
-              { duration: 3000 }
-            );
-            this.router.navigate(['/tipos-documento']);
-          },
-          error: (error) => {
-            console.error('Error actualizando el tipo de documento', error);
-            let errorMessage =
-              'Ocurrió un error al actualizar el tipo de documento.';
-            if (error.error && error.error.message) {
-              errorMessage = error.error.message;
-            } else if (error.status == 400) {
-              errorMessage = error.error.message;
-            } else if (error.status === 404) {
-              errorMessage = `Tipo de documento con id ${this.tipoDocumento.idTipoDocumento} no encontrado`;
-            }
-            this.snackBar.openFromComponent(ErrorHandlerComponent, {
-              data: { message: errorMessage },
-              duration: 5000,
-            });
-          },
-        });
+      if (this.tipoDocumento.idTipoDocumento !== null) {
+        this.tipoDocumentoService
+          .updateTipoDocumento(
+            this.tipoDocumento.idTipoDocumento,
+            this.tipoDocumento
+          )
+          .subscribe({
+            next: () => {
+              this.snackBar.open(
+                'Tipo de documento actualizado correctamente',
+                'Cerrar',
+                { duration: 3000 }
+              );
+              this.router.navigate(['/tipos-documento']);
+            },
+            error: (error) => {
+              console.error('Error actualizando el tipo de documento', error);
+              let errorMessage =
+                'Ocurrió un error al actualizar el tipo de documento.';
+              if (error.error && error.error.message) {
+                errorMessage = error.error.message;
+              } else if (error.status == 400) {
+                errorMessage = error.error.message;
+              } else if (error.status === 404) {
+                errorMessage = `Tipo de documento con id ${this.tipoDocumento.idTipoDocumento} no encontrado`;
+              }
+              this.snackBar.openFromComponent(ErrorHandlerComponent, {
+                data: { message: errorMessage },
+                duration: 5000,
+              });
+            },
+          });
+      }
     } else {
       this.tipoDocumentoService
         .createTipoDocumento(this.tipoDocumento)
