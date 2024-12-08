@@ -6,7 +6,7 @@ import { TipoContribuyente } from '../../shared/models/tipo-contribuyente.model'
   providedIn: 'root',
 })
 export class TipoContribuyenteService {
-  private apiUrl = 'api-url/tipos-contribuyente'; // URL del backend
+  private apiUrl = 'http://localhost:8080/tipos-contribuyente'; // URL del backend
 
   constructor(private http: HttpClient) {}
 

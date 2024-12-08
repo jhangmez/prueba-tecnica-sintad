@@ -5,12 +5,12 @@
   <mat-card-content>
     <form #tipoContribuyenteForm="ngForm" (ngSubmit)="onSubmit()">
       <mat-form-field appearance="outline">
-        <mat-label>Descripción</mat-label>
+        <mat-label>Nombre</mat-label>
         <input
           matInput
           type="text"
-          [(ngModel)]="tipoContribuyente.descripcion"
-          name="descripcion"
+          [(ngModel)]="tipoContribuyente.nombre"
+          name="nombre"
           required
         />
       </mat-form-field>

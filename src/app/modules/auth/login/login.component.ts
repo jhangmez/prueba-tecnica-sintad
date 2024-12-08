@@ -9,7 +9,8 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ErrorHandlerComponent } from '../../../shared/components/error-handler/error-handler.component';
-
+import { MatIconModule } from '@angular/material/icon';
+import { RouterLink } from '@angular/router';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -22,6 +23,8 @@ import { ErrorHandlerComponent } from '../../../shared/components/error-handler/
     MatInputModule,
     MatButtonModule,
     MatFormFieldModule,
+    MatIconModule,
+    RouterLink,
   ],
 })
 export class LoginComponent {
@@ -29,6 +32,7 @@ export class LoginComponent {
     username: '',
     password: '',
   };
+  hidePassword = true;
   constructor(
     private authService: AuthService,
     private router: Router,

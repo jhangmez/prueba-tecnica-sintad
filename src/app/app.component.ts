@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
+import { MatSidenav, MatSidenavModule } from '@angular/material/sidenav';
 import { CommonModule } from '@angular/common';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -17,6 +18,7 @@ import { AuthService } from './core/services/auth.service';
     RouterLinkActive,
     MatToolbarModule,
     MatButtonModule,
+    MatSidenavModule,
     MatIconModule,
     MatListModule,
   ],
@@ -24,6 +26,7 @@ import { AuthService } from './core/services/auth.service';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
+  @ViewChild('sidenav') sidenav!: MatSidenav;
   title = 'Prueba Técnica';
 
   constructor(public authService: AuthService) {}

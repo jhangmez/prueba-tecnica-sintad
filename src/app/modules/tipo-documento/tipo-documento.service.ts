@@ -6,7 +6,7 @@ import { TipoDocumento } from '../../shared/models/tipo-documento.model';
   providedIn: 'root',
 })
 export class TipoDocumentoService {
-  private apiUrl = 'api-url/tipos-documento'; // URL del backend
+  private apiUrl = 'http://localhost:8080/tipos-documento'; // URL del backend
   constructor(private http: HttpClient) {}
   getAllTiposDocumento(): Observable<TipoDocumento[]> {
     return this.http.get<TipoDocumento[]>(this.apiUrl);

@@ -6,7 +6,7 @@ import { Observable, tap } from 'rxjs';
   providedIn: 'root',
 })
 export class AuthService {
-  private apiUrl = 'api-url/auth'; // URL del backend
+  private apiUrl = 'http://localhost:8080/auth'; // URL del backend
   private tokenKey = 'authToken'; // TOKEN del backend
 
   constructor(private http: HttpClient) {}

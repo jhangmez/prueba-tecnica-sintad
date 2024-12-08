@@ -32,7 +32,7 @@ import { RouterLink } from '@angular/router';
 export class TipoContribuyenteFormComponent implements OnInit {
   tipoContribuyente: TipoContribuyente = {
     idTipoContribuyente: 0,
-    descripcion: '',
+    nombre: '',
     estado: true,
   };
   isEditing: boolean = false;

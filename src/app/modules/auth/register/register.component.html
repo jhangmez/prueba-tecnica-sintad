@@ -1,5 +1,5 @@
-<div class="register-container">
-  <mat-card class="register-card">
+<div class="auth-container">
+  <mat-card class="auth-card">
     <mat-card-header>
       <mat-card-title>Registro</mat-card-title>
     </mat-card-header>
@@ -14,6 +14,7 @@
             [(ngModel)]="user.username"
             required
           />
+          <mat-icon matSuffix>person</mat-icon>
         </mat-form-field>
         <mat-form-field appearance="outline">
           <mat-label>Correo Electrónico</mat-label>
@@ -24,26 +25,42 @@
             [(ngModel)]="user.email"
             required
           />
+          <mat-icon matSuffix>email</mat-icon>
         </mat-form-field>
         <mat-form-field appearance="outline">
           <mat-label>Contraseña</mat-label>
           <input
             matInput
-            type="password"
+            [type]="hidePassword ? 'password' : 'text'"
             name="password"
             [(ngModel)]="user.password"
             required
           />
+          <button
+            mat-icon-button
+            matSuffix
+            (click)="hidePassword = !hidePassword"
+            [attr.aria-label]="'Hide password'"
+            [attr.aria-pressed]="hidePassword"
+          >
+            <mat-icon>{{
+              hidePassword ? "visibility_off" : "visibility"
+            }}</mat-icon>
+          </button>
         </mat-form-field>
         <button
           mat-raised-button
           color="primary"
           type="submit"
           [disabled]="!registerForm.valid"
+          class="submit-button"
         >
           Registrarse
         </button>
       </form>
     </mat-card-content>
+    <mat-card-actions>
+      <a mat-button routerLink="/login">¿Ya tienes una cuenta? Inicia sesión</a>
+    </mat-card-actions>
   </mat-card>
 </div>

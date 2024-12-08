@@ -1,15 +1,28 @@
-.login-container {
+.auth-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  min-height: calc(100vh - 64px);
+  padding: 20px;
 }
 
-.login-card {
-  width: 300px;
-}
-
-.login-card mat-form-field {
+.auth-card {
   width: 100%;
-  margin-bottom: 20px;
+  max-width: 400px;
+}
+
+mat-form-field {
+  width: 100%;
+  margin-bottom: 16px;
+}
+
+.submit-button {
+  width: 100%;
+  margin-top: 16px;
+}
+
+@media (max-width: 768px) {
+  .auth-container {
+    min-height: calc(100vh - 56px);
+  }
 }

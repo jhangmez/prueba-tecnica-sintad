@@ -2,12 +2,13 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Entidad } from '../../shared/models/entidad.model';
+import { EntidadCrear } from '../../shared/models/entidad.create.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class EntidadService {
-  private apiUrl = 'api-url/entidades'; // URL del backend
+  private apiUrl = 'http://localhost:8080/entidades'; // URL del backend
   constructor(private http: HttpClient) {}
   getAllEntidades(): Observable<Entidad[]> {
     return this.http.get<Entidad[]>(this.apiUrl);
@@ -17,7 +18,7 @@ export class EntidadService {
     return this.http.get<Entidad>(`${this.apiUrl}/${id}`);
   }
 
-  createEntidad(entidad: Entidad): Observable<Entidad> {
+  createEntidad(entidad: EntidadCrear): Observable<Entidad> {
     return this.http.post<Entidad>(this.apiUrl, entidad);
   }
 

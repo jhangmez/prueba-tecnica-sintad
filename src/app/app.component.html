@@ -1,21 +1,47 @@
-<mat-toolbar color="primary">
-  <span>{{ title }} - Jhan Gomez</span>
-  <span class="spacer"></span>
-  <ng-container *ngIf="authService.isAuthenticated(); else loginTemplate">
-    <button mat-button routerLink="/entidades">Entidades</button>
-    <button mat-button routerLink="/tipos-contribuyente">
-      Tipos de Contribuyente
+<div class="app-container">
+  <mat-toolbar color="primary" class="app-toolbar">
+    <button mat-icon-button (click)="sidenav.toggle()" class="menu-button">
+      <mat-icon>menu</mat-icon>
     </button>
-    <button mat-button routerLink="/tipos-documento">Tipos de Documento</button>
-    |
-    <button mat-button (click)="logout()">
-      <mat-icon>logout</mat-icon> Cerrar Sesión
-    </button>
-  </ng-container>
-  <ng-template #loginTemplate>
-    <button mat-button routerLink="/login">Iniciar Sesión</button>
-    <button mat-button routerLink="/register">Registrarse</button>
-  </ng-template>
-</mat-toolbar>
+    <span class="app-title">{{ title }} - Jhan Gomez</span>
+    <span class="spacer"></span>
+    <ng-container *ngIf="authService.isAuthenticated(); else loginTemplate">
+      <button mat-button (click)="logout()" class="logout-button">
+        <mat-icon>logout</mat-icon>
+        <span class="button-text">Cerrar Sesión</span>
+      </button>
+    </ng-container>
+    <ng-template #loginTemplate>
+      <button mat-button routerLink="/login" class="auth-button">
+        Iniciar Sesión
+      </button>
+      <button mat-button routerLink="/register" class="auth-button">
+        Registrarse
+      </button>
+    </ng-template>
+  </mat-toolbar>
 
-<router-outlet></router-outlet>
+  <mat-sidenav-container class="sidenav-container">
+    <mat-sidenav #sidenav mode="over" class="app-sidenav">
+      <mat-nav-list>
+        <a mat-list-item routerLink="/entidades" routerLinkActive="active"
+          >Entidades</a
+        >
+        <a
+          mat-list-item
+          routerLink="/tipos-contribuyente"
+          routerLinkActive="active"
+          >Tipos de Contribuyente</a
+        >
+        <a mat-list-item routerLink="/tipos-documento" routerLinkActive="active"
+          >Tipos de Documento</a
+        >
+      </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <div class="content-container">
+        <router-outlet></router-outlet>
+      </div>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>

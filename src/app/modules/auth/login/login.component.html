@@ -1,5 +1,5 @@
-<div class="login-container">
-  <mat-card class="login-card">
+<div class="auth-container">
+  <mat-card class="auth-card">
     <mat-card-header>
       <mat-card-title>Iniciar Sesión</mat-card-title>
     </mat-card-header>
@@ -14,26 +14,42 @@
             [(ngModel)]="credentials.username"
             required
           />
+          <mat-icon matSuffix>person</mat-icon>
         </mat-form-field>
         <mat-form-field appearance="outline">
           <mat-label>Contraseña</mat-label>
           <input
             matInput
-            type="password"
+            [type]="hidePassword ? 'password' : 'text'"
             name="password"
             [(ngModel)]="credentials.password"
             required
           />
+          <button
+            mat-icon-button
+            matSuffix
+            (click)="hidePassword = !hidePassword"
+            [attr.aria-label]="'Hide password'"
+            [attr.aria-pressed]="hidePassword"
+          >
+            <mat-icon>{{
+              hidePassword ? "visibility_off" : "visibility"
+            }}</mat-icon>
+          </button>
         </mat-form-field>
         <button
           mat-raised-button
           color="primary"
           type="submit"
           [disabled]="!loginForm.valid"
+          class="submit-button"
         >
           Ingresar
         </button>
       </form>
     </mat-card-content>
+    <mat-card-actions>
+      <a mat-button routerLink="/register">¿No tienes una cuenta? Regístrate</a>
+    </mat-card-actions>
   </mat-card>
 </div>
