@@ -1,11 +1,61 @@
 .table-container {
-  margin: 20px;
+  margin: 40px;
+  max-width: 100%;
 }
 
 table {
-  width: 100%;
+  min-width: 600px;
 }
 
 .spacer {
   flex: 1 1 auto;
+}
+
+.table-responsive {
+  overflow-x: auto;
+  padding: 0px 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.responsive-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px; /* Ajusta el padding si es necesario */
+}
+
+.responsive-toolbar .title {
+  font-weight: 500;
+  white-space: nowrap; /* Evita que el texto se divida en varias líneas */
+  overflow: hidden; /* Oculta el texto que sobresale */
+  text-overflow: ellipsis; /* Agrega puntos suspensivos al final */
+  max-width: 60%; /* Ajusta este valor según sea necesario */
+}
+
+.responsive-toolbar .spacer {
+  flex: 1 1 auto; /* Permite que el spacer ocupe el espacio disponible */
+}
+
+.responsive-toolbar .add-button {
+  display: flex; /* Usamos flexbox para alinear el icono y el texto */
+  align-items: center; /* Centramos verticalmente el icono y el texto */
+}
+
+/* Estilos para pantallas pequeñas (sm) */
+@media (max-width: 599px) {
+  .responsive-toolbar .title {
+    font-size: 1rem; /* Reduce el tamaño del texto en pantallas pequeñas */
+  }
+
+  .responsive-toolbar .button-text {
+    display: none; /* Oculta el texto del botón en pantallas pequeñas */
+  }
+
+  .responsive-toolbar .add-button {
+    padding: 0 8px; /* Ajusta el padding del botón */
+    min-width: 0;
+    width: auto;
+    line-height: 35px;
+  }
 }

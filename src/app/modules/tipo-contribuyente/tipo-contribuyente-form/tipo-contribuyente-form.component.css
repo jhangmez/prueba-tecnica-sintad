@@ -1,9 +1,32 @@
-mat-card {
-  max-width: 600px;
-  margin: 20px auto;
+mat-card.tipo-contribuyente-card {
+  max-width: 500px;
+  margin: 32px auto;
+  border-radius: 8px; /* Bordes redondeados */
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-mat-form-field {
+mat-card.tipo-contribuyente-card mat-card-title {
+  padding: 16px 16px 0 16px;
+  font-size: 1.25rem;
+}
+
+mat-card.tipo-contribuyente-card mat-card-content {
+  padding: 16px;
+}
+
+mat-card.tipo-contribuyente-card mat-form-field {
   width: 100%;
-  margin-bottom: 10px;
+  margin-bottom: 16px;
+}
+
+mat-card.tipo-contribuyente-card .mat-mdc-text-field-wrapper {
+  background-color: #fafafa;
+}
+
+mat-card.tipo-contribuyente-card mat-slide-toggle {
+  margin-bottom: 16px;
+}
+
+mat-card.tipo-contribuyente-card button[mat-raised-button] {
+  margin-right: 8px;
 }

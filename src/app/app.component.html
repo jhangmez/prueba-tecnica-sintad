@@ -3,7 +3,9 @@
     <button mat-icon-button (click)="sidenav.toggle()" class="menu-button">
       <mat-icon>menu</mat-icon>
     </button>
-    <span class="app-title">{{ title }} - Jhan Gomez</span>
+    <span class="app-title" (click)="navigateToRoot()"
+      >{{ title }} | Jhan G.</span
+    >
     <span class="spacer"></span>
     <ng-container *ngIf="authService.isAuthenticated(); else loginTemplate">
       <button mat-button (click)="logout()" class="logout-button">
